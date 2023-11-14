@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
             window.location.href = "jogo.html";
         } else {
             // Usuário não encontrado ou senha incorreta
-            alert("Usuário não encontrado ou senha incorreta. Por favor, cadastre-se.");
+            alert("Usuário não encontrado ou senha incorreta.");
         }
     });
 
