@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
             window.location.href = "jogo.html";
         } else {
             // Usuário não encontrado ou senha incorreta
-            alert("Usuário não encontrado ou senha incorreta.");
+            alertWifi("Usuário não encontrado ou senha incorreta.", false, 0, "", 30, "");
         }
     });
 
