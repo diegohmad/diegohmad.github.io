@@ -3,6 +3,11 @@ window.addEventListener('load', function () {
         var user = document.getElementById("user").value;
         var password = document.getElementById("password").value;
 
+        if (user.trim() === "" || password.trim() === "") {
+            alert("Por favor, insira usuário e senha.");
+            return;
+        }
+
         var vetUsuarios = localStorage.getItem("vetUsuarios") || "[]";
         var usuarios = JSON.parse(vetUsuarios);
 
@@ -13,7 +18,7 @@ window.addEventListener('load', function () {
         if (usuarioEncontrado) {
             window.location.href = "jogo.html";
         } else {
-            alertWifi("Usuário não encontrado ou senha incorreta.", false, 0, "", 30, "");
+            alert("Usuário não encontrado ou senha incorreta.");
         }
     });
 
