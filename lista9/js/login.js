@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
         var password = document.getElementById("password").value;
 
         if (user.trim() === "" || password.trim() === "") {
-            alert("Por favor, insira usuário e senha.");
+            alertWifi("Por favor, insira usuário e senha.", false, 0, "", 30, "");
             return;
         }
 
@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
         if (usuarioEncontrado) {
             window.location.href = "jogo.html";
         } else {
-            alert("Usuário não encontrado ou senha incorreta.");
+            alertWifi("Usuário não encontrado ou senha incorreta.", false, 0, "", 30, "");
         }
     });
 
