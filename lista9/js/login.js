@@ -3,7 +3,6 @@ window.addEventListener('load', function () {
         var user = document.getElementById("user").value;
         var password = document.getElementById("password").value;
 
-        // Simulação do armazenamento de usuários (você pode substituir isso pelo seu código real)
         var vetUsuarios = localStorage.getItem("vetUsuarios") || "[]";
         var usuarios = JSON.parse(vetUsuarios);
 
@@ -12,16 +11,13 @@ window.addEventListener('load', function () {
         });
 
         if (usuarioEncontrado) {
-            // Usuário autenticado, redirecione para index.html
             window.location.href = "jogo.html";
         } else {
-            // Usuário não encontrado ou senha incorreta
             alertWifi("Usuário não encontrado ou senha incorreta.", false, 0, "", 30, "");
         }
     });
 
     document.getElementById("cadastrar").addEventListener("click", function () {
-        // Redirecione para cadastro.html ao clicar em cadastrar
         window.location.href = "cadastrar.html";
     });
 });
