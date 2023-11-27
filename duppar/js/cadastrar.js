@@ -54,7 +54,7 @@ window.addEventListener('load', function () {
 
                 // Redirecionar para o login após 5 segundos
                 setTimeout(function () {
-                    window.location.href = "index.html";
+                    window.location.href = "login.html";
                 }, 5000);
             }
         }
