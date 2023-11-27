@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
     var auddioErro = document.getElementById('audioErro');
 
     // Aguarde a interação do usuário antes de iniciar o áudio em loop
-    document.addEventListener('click', function () {
+    document.getElementById('logo').addEventListener('click', function () {
         audioLoop.play();
         // Remova o ouvinte após a primeira interação
         document.removeEventListener('click', arguments.callee);
