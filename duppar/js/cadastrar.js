@@ -12,8 +12,8 @@ window.addEventListener('load', function () {
     document.getElementById("voltar").addEventListener("click", function () {
         audioBotao.play();
         setTimeout(function () {
-            window.location.href = "index.html";
-        }, 3000);
+            window.location.href = "login.html";
+        }, 2000);
     });
 
     document.getElementById("cadastrar").addEventListener("click", function () {
