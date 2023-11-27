@@ -4,8 +4,12 @@ window.addEventListener('load', function () {
     var audioBotao = document.getElementById('audioBotao');
     var auddioErro = document.getElementById('audioErro');
 
-    // Iniciar áudio em loop
-    audioLoop.play();
+    // Aguarde a interação do usuário antes de iniciar o áudio em loop
+    document.addEventListener('click', function () {
+        audioLoop.play();
+        // Remova o ouvinte após a primeira interação
+        document.removeEventListener('click', arguments.callee);
+    });
 
     document.getElementById("entrar").addEventListener("click", function () {
         var user = document.getElementById("user").value;
