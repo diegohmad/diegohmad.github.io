@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/cadastrar.js"></script>
+    <script src="js/jAlertWifi.js"></script>
+    <link rel="stylesheet" href="css/jAlertWifi.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <audio id="audioLoop" loop>
+        <source src="audio/jungle-ninja-77637.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <audio id="audioBotao">
+        <source src="audio/watah-45539.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <audio id="audioErro">
+        <source src="audio/kabuki-104876.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <audio id="audioOk">
+        <source src="audio/kung-fu-yell-6314.mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <title>Página de Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/logo.png" alt="Logo">
+            <h1>Cadastro</h1>
+        </header>
+        <form>
+            <div class="form-group">
+                <label for="user">Usuário:</label>
+                <input type="text" name="user" id="user">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="form-group">
+                <label for="passwordCheck">Confirme a Senha:</label>
+                <input type="password" name="passwordCheck" id="passwordCheck">
+            </div>
+            <div class="button-group">
+                <input type="button" value="Cadastrar" id="cadastrar">
+                <input type="button" value="voltar" id="voltar">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script src="js/scripts.js" defer></script>
+        <audio id="audioMusic" loop>
+            <source src="audio/mysterious-horror-theme-song-22587.mp3" type="audio/mp3">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <audio id="audioBotao">
+            <source src="audio/watah-45539.mp3" type="audio/mp3">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <audio id="audioFatia">
+            <source src="audio/knife-slice-41231.mp3" type="audio/mp3">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <audio id="audioErro">
+            <source src="audio/kabuki-104876.mp3" type="audio/mp3">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <title>Jogo da Paridade</title>
+    </head>
+    <body>
+        <header>
+            <img src="img/logo.png" alt="logo: ninja dos números pares">
+            <h1>JOGO DA PARIDADE</h1>
+            <form class="container">
+                <div>
+                    <label for="nivel">Nível:</label>
+                    <select id="nivel" name="nivel">
+                        <option value="0" selected>Selecione</option>
+                        <option value="1">Fácil</option>
+                        <option value="2">Médio</option>
+                        <option value="3">Difícil</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="tempo">Tempo:</label>
+                    <p id="tempo"><span id="minutos">0</span>:<span id="segundos">00</span></p>
+                </div>
+                <div class="cont-controles">
+                    <label for="pontos">Controles:</label>
+                    <div class="controles">
+                        <input type="button" id="btnPlay" value="Iniciar">
+                        <input type="button" id="btnPause" value="Pausar">
+                        <input type="button" id="btnStop" value="Parar">
+                        <input type="button" id="btnReturn" value="Retornar">
+                    </div>
+                </div>
+            </form>
+        </header>
+        <main>
+            <p><span id="numero">_</span></p>
+        </main>
+        <footer>
+            <div>
+                <p>Acertos: <span id="acertos"></span>(<span
+                        id="perc-acertos"></span>%)</p>
+            </div>
+            <div>
+                <p>Erros: <span id="erros"></span></p>
+            </div>
+            <div>
+                <p>Números pares sorteados: <span id="numeros-pares"></span></p>
+            </div>
+        </footer>
+    </body>
+</html>
