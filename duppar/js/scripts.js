@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-
     var audioMusic = document.getElementById('audioMusic');
     var audioBotao = document.getElementById('audioBotao');
     var auddioFatia = document.getElementById('audioFatia');
@@ -16,6 +15,21 @@ window.addEventListener("load", function () {
     let erros = 0;
     let totalPares = 0;
     let numeroSorteado = 0;
+    let numeroClicavel = true;
+
+    document.getElementById("numero").addEventListener("click", function () {
+        if (numeroSorteado !== 0 && numeroClicavel) {
+            if (numeroSorteado % 2 == 0) {
+                auddioFatia.play();
+                somaAcertos();
+            } else {
+                audioErro.play();
+                somaErros();
+            }
+
+            numeroClicavel = false;
+        }
+    });
 
     document.getElementById("nivel").addEventListener("change", function () {
         let nivel = document.getElementById("nivel").value;
@@ -51,7 +65,7 @@ window.addEventListener("load", function () {
         } else if (nivel == 3) {
             interval = 500;
         } else {
-            alert("Selecione um nível!");
+            alertWifi("Selecione um nível", false, 0, "", 30, "");
             return;
         }
         timeGame(minutos, segundos);
@@ -81,7 +95,7 @@ window.addEventListener("load", function () {
     function temporizador() {
         if (minutos == 0 && segundos == 0) {
             audioBotao.play();
-            alert("Fim de Jogo!");
+            alertWifi("Fim de Jogo", false, 0, "", 30, "");
             clearInterval(cronometro);
             clearInterval(timerNumber);
             return;
@@ -104,21 +118,10 @@ window.addEventListener("load", function () {
         numeroSorteado = Math.floor(Math.random() * 100) + 1;
         document.getElementById("numero").style.color = "black";
         document.getElementById("numero").innerHTML = numeroSorteado;
+        numeroClicavel = true;
         if (numeroSorteado % 2 == 0) {
             somaPares();
         }
-    }
-
-    function somaPares() {
-        totalPares++;
-        document.getElementById("numeros-pares").innerHTML = totalPares;
-        preencherPorcentagem();
-    }
-
-    function somaErros() {
-        erros++;
-        document.getElementById("erros").innerHTML = erros;
-        document.getElementById("numero").style.color = "darkred";
     }
 
     function somaAcertos() {
@@ -128,17 +131,17 @@ window.addEventListener("load", function () {
         preencherPorcentagem();
     }
 
-    document.getElementById("numero").addEventListener("click", function () {
-        if (numeroSorteado != 0) {
-            if (numeroSorteado % 2 == 0) {
-                auddioFatia.play();
-                somaAcertos();
-            } else {
-                audioErro.play();
-                somaErros();
-            }
-        }
-    });
+    function somaErros() {
+        erros++;
+        document.getElementById("erros").innerHTML = erros;
+        document.getElementById("numero").style.color = "darkred";
+    }
+
+    function somaPares() {
+        totalPares++;
+        document.getElementById("numeros-pares").innerHTML = totalPares;
+        preencherPorcentagem();
+    }
 
     function preencherPorcentagem() {
         let percent = ((acertos / totalPares) * 100).toFixed(2);
