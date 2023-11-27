@@ -1,0 +1,24 @@
+---------------------------------------------------
+Here are the ownership and the certification details
+of the duppargame 1.2
+---------------------------------------------------
+
+app_name - 						duppargame
+app_alias - 					duppargame
+app_author_name - 				My Company
+app_author_organizational - 	My Company
+app_author_organization - 		My Company
+app_author_locality - 			My Company
+app_author_state - 				Sao Paulo
+app_author_country - 			Brazil
+app_password - 					7RR6ZoBioPfa
+app_versionName - 				versionName "1.2"
+app_versionCode - 				102
+
+---------------------------------------------------
+The certification was created by WebIntoApp.com at
+the Monday 27th of November 2023 06:07:58 PM
+
+https://www.webintoapp.com
+---------------------------------------------------
+
