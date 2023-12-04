@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Lista 11</title>
+</head>
+<body>
+    <header>
+        <h1> Lista 11 - Expressões Regulares</h1>
+    </header>
+    <main>
+        <form action="">
+            <label for="">Data de nascimento com ano em dois e quatro dígitos:</label>
+            <input type="text" id="dataNascimento" onKeyPress="mascaraDataNascimento()" value="25/08/1987">
+            <input type="button" id="validarDataNascimento" value="Validar">
+            <br>
+            <br>
+            <label for="">CPF</label>
+            <input type="text" id="cpf" onKeyPress="mascaraCPF()" value="000.000.000-00">
+            <input type="button" id="validarCPF" value="Validar">
+            <br>
+            <br>
+            <label for="">Matrícula do Aluno:</label>
+            <input type="text" id="matricula" value="IFTM-123/456-78">
+            <input type="button" id="validarMatricula" value="Validar">
+            <br>
+            <br>
+            <label for="">Código da disciplina:</label>
+            <input type="text" id="codigoDisciplina1" onKeyPress="mascaraCodigoDisciplina()" value="mt-12.345-IFTM">
+            <input type="button" id="validarCodigoDisciplina1" value="Validar">
+            <br>
+            <br>
+            <label for="">Código da disciplina(V2):</label>
+            <input type="text" id="codigoDisciplina2" onKeyPress="mascaraCodigoDisciplina()" value="MT-58.561-IFTM" >
+            <input type="button" id="validarCodigoDisciplina2" value="Validar">
+            <br>
+            <br>
+            <label for="">Código da disciplina(V3):</label>
+            <input type="text" id="codigoDisciplina3" value="M T-99.137-I F T M" >
+            <input type="button" id="validarCodigoDisciplina3" value="Validar">
+            <br>
+            <br>
+            <label for="">Campus do IFTM:</label>
+            <input type="text" id="nomeCampus" value="IFTM campus Uberlândia" >
+            <input type="button" id="validarNomeCampus" value="Validar">
+            <br>
+            <br>
+            <label for="">Telefone:</label>
+            <input type="text" id="telefone1" onKeyPress="mascaraTelefone()" value="+55(34)91234-5678" >
+            <input type="button" id="validarTelefone1" value="Validar">
+            <br>
+            <br>
+            <label for="">Telefone(V2):</label>
+            <input type="text" id="telefone2" value="(34) 91234-5678" >
+            <input type="button" id="validarTelefone2" value="Validar">
+            <br>
+            <br>
+            <label for="">Altura:</label>
+            <input type="text" id="altura" value="1,75" >
+            <input type="button" id="validarAltura" value="Validar">
+            <br>
+            <br>
+            <label for="">Faturamento:</label>
+            <input type="text" id="faturamento" value="R$50,00" >
+            <input type="button" id="validarFaturamento" value="Validar">
+            <br>
+            <br>
+            <label for="">Cronômetro:</label>
+            <input type="text" id="cronometro" onKeyPress="mascaraCronometro()" value="13:32:26:12" >
+            <input type="button" id="validarCronometro" value="Validar">
+        </form>
+    </main>
+    <footer>
+        <p>Todos os direitos endireitados</p>
+    </footer>
+    <script src="js/jAlertWifi.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
