@@ -1,154 +1,118 @@
 window.addEventListener('load', function() {
     var op = document.getElementById('selecao').value;
-    //se valor de selecao mudar no html, buscar novamente os dados
+
+    function fetchDataAndProcess(url, processFunction) {
+        fetch(url)
+            .then(response => response.json())
+            .then(dados => {
+                processFunction(dados);
+            });
+    }
+
+    function displayOutput(output) {
+        document.getElementById('output').innerHTML = output;
+    }
+
+    function listStudents(dados, filterFunction) {
+        var output = '';
+        dados.forEach(function(aluno) {
+            if (filterFunction(aluno)) {
+                output += `
+                    <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
+                `;
+            }
+        });
+        displayOutput(output);
+    }
+
+    function listarEstudantes() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listStudents(dados, () => true);
+        });
+    }
+
+    function filterBySex(sex) {
+        return function(aluno) {
+            return aluno.sexo === sex;
+        }
+    }
+
+    function listarEstudantesHomens() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listStudents(dados, filterBySex('M'));
+        });
+    }
+
+    function listarEstudantesMulheres() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listStudents(dados, filterBySex('F'));
+        });
+    }
+
+    function listarEstudantesAprovados() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listStudents(dados, function(aluno) {
+                return aluno.notaBim1 + aluno.notaBim2 >= 60;
+            });
+        });
+    }
+
+    function listarEstudantesReprovados() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listStudents(dados, function(aluno) {
+                return aluno.notaBim1 + aluno.notaBim2 < 60;
+            });
+        });
+    }
+
+    function todosAprovados() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            var aprovados = dados.every(function(aluno) {
+                return aluno.notaBim1 + aluno.notaBim2 >= 60;
+            });
+            displayOutput(aprovados ? '<p>Todos os alunos foram aprovados!</p>' : '<p>Nem todos os alunos foram aprovados!</p>');
+        });
+    }
+
+    function notaMedia() {
+        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            var media = dados.reduce(function(acc, aluno) {
+                return acc + aluno.notaBim1 + aluno.notaBim2;
+            }, 0) / dados.length;
+            media = media.toFixed(2);
+            displayOutput(`<p>Nota média = ${media}</p>`);
+        });
+    }
+
     document.getElementById('selecao').addEventListener('change', function() {
         op = document.getElementById('selecao').value;
-        if (op == 1) {
-            listarEstudantes();
-        } else if (op == 2) {
-            listarEstudantesHomens();
-        } else if (op == 3) {
-            listarEstudantesMulheres();
-        } else if (op == 4) {
-            listarEstudantesAprovados();
-        } else if (op == 5) {
-            listarEstudantesReprovados();
-        } else if (op == 6) {
-            todosAprovados();
-        } else if (op == 7) {
-            notaMedia();
-        } else if (op == 0) {
-            document.getElementById('output').innerHTML = '';
+        switch (op) {
+            case '1':
+                listarEstudantes();
+                break;
+            case '2':
+                listarEstudantesHomens();
+                break;
+            case '3':
+                listarEstudantesMulheres();
+                break;
+            case '4':
+                listarEstudantesAprovados();
+                break;
+            case '5':
+                listarEstudantesReprovados();
+                break;
+            case '6':
+                todosAprovados();
+                break;
+            case '7':
+                notaMedia();
+                break;
+            case '0':
+                displayOutput('');
+                break;
+            default:
+                displayOutput('<p>Opção inválida!</p>');
         }
     });
 });
-
-//listar todos os estudantes
-function listarEstudantes() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            data.forEach(function(aluno) {
-                output += `
-                        <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
-                `;
-            });
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
-// listar estudantes homens por aluno.sexo M ou F
-function listarEstudantesHomens() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            data.forEach(function(aluno) {
-                if (aluno.sexo == 'M') {
-                    output += `
-                        <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
-                    `;
-                }
-            });
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
-// listar estudantes mulheres por aluno.sexo M ou F
-function listarEstudantesMulheres() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            data.forEach(function(aluno) {
-                if (aluno.sexo == 'F') {
-                    output += `
-                        <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
-                    `;
-                }
-            });
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
-// listar estudantes aprovados onde aluno.notabim1 + aluno.notabim2 >= 60
-function listarEstudantesAprovados() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            data.forEach(function(aluno) {
-                if (aluno.notaBim1 + aluno.notaBim2 >= 60) {
-                    output += `
-                        <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
-                    `;
-                }
-            });
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
-// listar estudantes reprovados onde aluno.notabim1 + aluno.notabim2 < 60
-function listarEstudantesReprovados() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            data.forEach(function(aluno) {
-                if (aluno.notaBim1 + aluno.notaBim2 < 60) {
-                    output += `
-                        <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
-                    `;
-                }
-            });
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
-//Todos os alunos aprovados? Responder com uma mensagem em output se é verdade ou não
-function todosAprovados() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            var aprovados = true;
-            data.forEach(function(aluno) {
-                if (aluno.notaBim1 + aluno.notaBim2 < 60) {
-                    aprovados = false;
-                }
-            });
-            if (aprovados) {
-                output = '<p>Todos os alunos foram aprovados!</p>';
-            } else {
-                output = '<p>Nem todos os alunos foram aprovados!</p>';
-            }
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
-//mostrar a nota média da turma
-function notaMedia() {
-    fetch('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var output = '';
-            var media = 0;
-            data.forEach(function(aluno) {
-                media += (aluno.notaBim1 + aluno.notaBim2);
-            });
-            media = media / data.length;
-            //soltar a nota com duas casas decimais
-            media = media.toFixed(2);
-            output = `<p>Nota média = ${media}</p>`;
-            document.getElementById('output').innerHTML = output;
-        });
-}
-
