@@ -1,0 +1,35 @@
+
+body {
+  background-color: white;
+  color:aqua;
+  font-family: 'Arial';
+  font-size: 20px;
+  text-align: center;
+  background-color: lightblue;
+}
+
+
+select {
+  background-color: lightblue;
+  color: black;
+  font-family: 'Arial';
+  font-size: 20px;
+  text-align: center;
+  border-color: white;
+}
+
+p {
+  background-color: lightblue;
+  color: black;
+  font-family: 'Arial';
+  font-size: 20px;
+  text-align: center;
+}
+
+h1 {
+    background-color: lightblue;
+    color: black;
+    font-family: 'Arial';
+    font-size: 35 px;
+    text-align: center;
+}
