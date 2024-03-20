@@ -1,86 +1,86 @@
 window.addEventListener('load', function() {
     var op = document.getElementById('selecao').value;
 
-    function fetchDataAndProcess(url, processFunction) {
+    function buscarDadosEProcessar(url, processarFuncao) {
         fetch(url)
             .then(response => response.json())
             .then(dados => {
-                processFunction(dados);
+                processarFuncao(dados);
             });
     }
 
-    function displayOutput(output) {
-        document.getElementById('output').innerHTML = output;
+    function exibirResultado(resultado) {
+        document.getElementById('output').innerHTML = resultado;
     }
 
-    function listStudents(dados, filterFunction) {
-        var output = '';
+    function listarAlunos(dados, funcaoFiltro) {
+        var resultado = '';
         dados.forEach(function(aluno) {
-            if (filterFunction(aluno)) {
-                output += `
+            if (funcaoFiltro(aluno)) {
+                resultado += `
                     <p>${aluno.nome}: ${aluno.notaBim1} (bimestre 1) e ${aluno.notaBim2} (bimestre 2) = ${aluno.notaBim1+aluno.notaBim2};</p>
                 `;
             }
         });
-        displayOutput(output);
+        exibirResultado(resultado);
     }
 
     function listarEstudantes() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
-            listStudents(dados, () => true);
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listarAlunos(dados, () => true);
         });
     }
 
-    function filterBySex(sex) {
+    function filtrarPorSexo(sexo) {
         return function(aluno) {
-            return aluno.sexo === sex;
+            return aluno.sexo === sexo;
         }
     }
 
-    function listarEstudantesHomens() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
-            listStudents(dados, filterBySex('M'));
+    function listarAlunosHomens() {
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listarAlunos(dados, filtrarPorSexo('M'));
         });
     }
 
-    function listarEstudantesMulheres() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
-            listStudents(dados, filterBySex('F'));
+    function listarAlunas() {
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listarAlunos(dados, filtrarPorSexo('F'));
         });
     }
 
-    function listarEstudantesAprovados() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
-            listStudents(dados, function(aluno) {
+    function listarAlunosAprovados() {
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listarAlunos(dados, function(aluno) {
                 return aluno.notaBim1 + aluno.notaBim2 >= 60;
             });
         });
     }
 
-    function listarEstudantesReprovados() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
-            listStudents(dados, function(aluno) {
+    function listarAlunosReprovados() {
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+            listarAlunos(dados, function(aluno) {
                 return aluno.notaBim1 + aluno.notaBim2 < 60;
             });
         });
     }
 
     function todosAprovados() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
             var aprovados = dados.every(function(aluno) {
                 return aluno.notaBim1 + aluno.notaBim2 >= 60;
             });
-            displayOutput(aprovados ? '<p>Todos os alunos foram aprovados!</p>' : '<p>Nem todos os alunos foram aprovados!</p>');
+            exibirResultado(aprovados ? '<p>Todos os alunos foram aprovados!</p>' : '<p>Nem todos os alunos foram aprovados!</p>');
         });
     }
 
-    function notaMedia() {
-        fetchDataAndProcess('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
+    function mediaNotas() {
+        buscarDadosEProcessar('https://wilton-filho.github.io/PFJS-GitHub/bases/alunos.json', function(dados) {
             var media = dados.reduce(function(acc, aluno) {
                 return acc + aluno.notaBim1 + aluno.notaBim2;
             }, 0) / dados.length;
             media = media.toFixed(2);
-            displayOutput(`<p>Nota média = ${media}</p>`);
+            exibirResultado(`<p>Nota média = ${media}</p>`);
         });
     }
 
@@ -91,28 +91,28 @@ window.addEventListener('load', function() {
                 listarEstudantes();
                 break;
             case '2':
-                listarEstudantesHomens();
+                listarAlunosHomens();
                 break;
             case '3':
-                listarEstudantesMulheres();
+                listarAlunas();
                 break;
             case '4':
-                listarEstudantesAprovados();
+                listarAlunosAprovados();
                 break;
             case '5':
-                listarEstudantesReprovados();
+                listarAlunosReprovados();
                 break;
             case '6':
                 todosAprovados();
                 break;
             case '7':
-                notaMedia();
+                mediaNotas();
                 break;
             case '0':
-                displayOutput('');
+                exibirResultado('');
                 break;
             default:
-                displayOutput('<p>Opção inválida!</p>');
+                exibirResultado('<p>Opção inválida!</p>');
         }
     });
 });
