@@ -61,7 +61,6 @@ main {
 .filme img {
     width: 100%; /* Imagem ocupa toda a largura do contêiner */
     height: auto; /* Altura ajustada automaticamente */
-    max-height: 200px; /* Altura máxima das imagens */
 }
 
 .filme:hover {
