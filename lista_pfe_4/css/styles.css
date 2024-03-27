@@ -1,0 +1,110 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom right, #53349e, #ffd600); /* Gradiente linear de roxo para amarelo */
+    overflow-x: hidden; /* Oculta a barra de rolagem */
+}
+
+header, footer {
+    width: 100%; /* Largura total */
+    background-color: #53349e; /* Roxo */
+    color: #fff; /* Texto branco */
+    text-align: left;
+    padding: 20px;
+}
+
+/* Estilizando o header */
+header {
+    border-bottom-left-radius: 10px; /* Apenas a borda inferior arredondada */
+    border-bottom-right-radius: 10px; /* Apenas a borda inferior arredondada */
+    height: 100px; /* Altura do cabeçalho */
+}
+
+/* Estilizando o footer */
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.5); /* Borda superior */
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    color: lightyellow;
+}
+
+p a {
+    color: lightyellow;
+}
+
+header h1 {
+    margin: 35px;
+    font-size: 30px; /* Tamanho da fonte aumentado */
+    color: whitesmoke;
+}
+
+main {
+    padding: 10px;
+    margin: 0 auto;
+}
+
+/* Estilos para os filmes */
+.filme {
+    background-color: rgba(100, 30, 100, .3); /* Cor de fundo dos filmes */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: transform 0.5s ease; /* Efeito de transição */
+    text-align: justify; /* Alinhamento justificado */
+}
+
+.filme img {
+    width: 100%; /* Imagem ocupa toda a largura do contêiner */
+    height: auto; /* Altura ajustada automaticamente */
+    max-height: 200px; /* Altura máxima das imagens */
+}
+
+.filme:hover {
+    transform: scale(1.03); /* Aumenta em 3% quando passar o mouse */
+    background-color: rgba(250, 200, 255, .9);
+}
+
+/* Estilos para o rodapé */
+footer p {
+    margin: 5px 0;
+}
+
+/* Estilos para o layout em duas colunas */
+#box-filmes {
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Uma coluna para dispositivos móveis */
+    gap: 10px; /* Espaçamento entre os itens */
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Borda com transparência */
+    overflow-x: hidden; /* Para garantir que a borda se aplique corretamente */
+    margin: auto;
+}
+
+/* Consulta de mídia para telas maiores */
+@media screen and (min-width: 768px) {
+    header h1 {
+        margin: 20px;
+        font-size: 50px; /* Tamanho da fonte aumentado */
+    }
+    #box-filmes {
+        grid-template-columns: repeat(2, minmax(200px, 1fr)); /* Duas colunas para telas maiores */
+    }
+}
+
+/* Consulta de mídia para telas ainda maiores */
+@media screen and (min-width: 1024px) {
+    header h1 {
+        margin: 30px;
+        font-size: 60px; /* Tamanho da fonte aumentado */
+    }
+    #box-filmes {
+        margin: 30px;
+        grid-template-columns: repeat(5, minmax(200px, 1fr)); /* Cinco colunas para telas maiores */
+    }
+}
