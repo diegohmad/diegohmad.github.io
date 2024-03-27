@@ -42,7 +42,7 @@ window.addEventListener('load', function () {
 
                         const capaFilme = document.createElement('img');
                         const url = `https://image.tmdb.org/t/p/w500`;
-                        capaFilme.setAttribute('src', `${url}${filme.backdrop_path}`);
+                        capaFilme.setAttribute('src', `${url}${filme.poster_path}`);
 
                         objFilme.appendChild(capaFilme);
                         objFilme.appendChild(tituloFilme);
