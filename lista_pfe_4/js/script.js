@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
 
                         tituloFilme.textContent = `${filme.title}`;
                         tituloFilme.setAttribute('style', 'font-weight: bold;');
-                        mediaNota.textContent = `Nota média: ${filme.vote_average}`;
+                        mediaNota.textContent = `Nota média: ${filme.vote_average} ⭐`;
                         voteCount.textContent = `Votos: ${filme.vote_count}`;
                         const genreNames = filme.genre_ids.map(genreId => genresMap.get(genreId)).join(', ');
                         generos.textContent = `Gêneros: ${genreNames}`;
