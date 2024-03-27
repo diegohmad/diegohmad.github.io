@@ -76,7 +76,7 @@ footer p {
 /* Estilos para o layout em duas colunas */
 #box-filmes {
     display: grid;
-    padding: 10px;
+    padding: 20px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Uma coluna para dispositivos móveis */
     gap: 10px; /* Espaçamento entre os itens */
     border-radius: 10px; /* Bordas arredondadas */
